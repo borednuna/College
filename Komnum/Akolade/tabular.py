@@ -1,12 +1,20 @@
+from prettytable import PrettyTable
 import math
-import matplotlib.pyplot as plt
 
-x = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+x = []
 y = []
 equation_unsolved = []
 
+lower_x = int(input("Lower_x: "))
+upper_x = int(input("Upper_x: "))
 highest_exponent = int(input("Highest exponent: "))
+
 count = 0
+increment = (upper_x - lower_x) / 20
+
+while lower_x <= upper_x:
+    x.append(lower_x)
+    lower_x += increment
 
 while count <= highest_exponent:
     string = "_x^" + str(count) + "= "
@@ -21,21 +29,13 @@ for var in x:
         buffer = abs(math.pow(var, exponent)) * int(equation_unsolved[exponent])
         temp += buffer
         exponent += 1
-    print(temp)
     y.append(temp)
 
-equation = ""
-print_plus = False
-while highest_exponent >= 0:
-    if print_plus:
-        equation += " + "
-    equation += str(equation_unsolved[highest_exponent]) + "x^" + str(highest_exponent)
-    print_plus = True
-    highest_exponent -= 1
-equation += " = 0"
+table = PrettyTable(["x", "f(x)", "x'", "f(x)'"])
 
-print(equation)
+count = 0
+while count <= 10:
+    table.add_row([x[count], y[count], x[count + 10], y[count + 10]])
+    count += 1
 
-plt.plot(x, y)
-plt.xlabel(equation)
-plt.show()
+print(table)
