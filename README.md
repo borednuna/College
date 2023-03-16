@@ -1,2 +1,4 @@
 # Third-Semester
-Codes from my third semester
+```
+While (!graduated) write_code();
+```
