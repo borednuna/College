@@ -60,10 +60,11 @@ SELECT IDPasien, TglPeriksa FROM Pemeriksaan WHERE Diagnosa = 'Gigi Berlubang' O
 SELECT NoKtp, NamaPasien FROM DataPasien WHERE IDPasien IN (SELECT IDPasien FROM Pemeriksaan WHERE EXTRACT(MONTH FROM TglPeriksa) = 5);
 
 -- Select name of patients, name of doctors, the doctor’s poly, and check date of patients who handled by doctor Dr. Budikusnaedi
-SELECT NamaPasien, Nama, NamaPoli, TglPeriksa
-FROM DataPasien, Dokter, Poli, Pemeriksaan
-WHERE
-    Nama LIKE 'Dr. Budikusnaedi' AND
-    Dokter.NID = Pemeriksaan.NID AND
-    Poli.KodePoli = Dokter.KodePoli AND
-    DataPasien.IDPasien = Pemeriksaan.IDPasien;
+SELECT DataPasien.NamaPasien, Prk.Nama, Poli.NamaPoli, Prk.TglPeriksa
+FROM (
+    SELECT Pemeriksaan.NID, Pemeriksaan.IDPasien, Pemeriksaan.TglPeriksa, Pemeriksaan.Diagnosa,
+    Dokter.Nama, Dokter.NID, Dokter.KodePoli
+    FROM Pemeriksaan JOIN Dokter ON Pemeriksaan.NID = Dokter.NID
+    WHERE Nama = 'Dr. Budikusnaedi'
+) Prk JOIN DataPasien ON Prk.IDPasien = DataPasien.IDPasien
+JOIN Poli ON Prk.KodePoli = Poli.KodePoli;
