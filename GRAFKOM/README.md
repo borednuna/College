@@ -142,3 +142,5 @@ Tampak sisi atas bawah :
 	drawPrimitive( gl.TRIANGLE_FAN, [0,0,1,1], [ -0.5,0.5,-0.5, -0.3,0.3,0.5, 0.5,0.3,0.5, 0.3,0.5,-0.5 ]);
     drawPrimitive( gl.TRIANGLE_FAN, [1,1,0,1], [ -0.5,-0.3,-0.5, -0.3,-0.5,0.5, 0.5,-0.5,0.5, 0.3,-0.3,-0.5 ]);
 ```
+
+Dokumentasi lengkap beserta gambar dapat dilihat di link [berikut](https://flying-pigs.notion.site/DOKUMENTASI-GRAFKOM-d174248589cd4ee18be006ff099d2542)
